@@ -1,14 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const Task = ({ task }) => {
+const Task = ({ tasks, completeTask }) => {
   const { item, itemsLeft, square, itemText, circular } = styles;
 
   return (
     <View style={item}>
       <View style={itemsLeft}>
-        <View style={square}></View>
-        <Text style={itemText}>{task}</Text>
+        <TouchableOpacity onPress={() => completeTask(tasks.id)}>
+          <View style={square}></View>
+        </TouchableOpacity>
+        <Text style={itemText}>{tasks.task}</Text>
       </View>
       <View style={circular}></View>
     </View>
