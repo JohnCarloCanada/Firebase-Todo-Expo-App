@@ -76,6 +76,13 @@ export default function App() {
     };
   }, []);
 
+  /**
+   * The function adds a new task item to a list and schedules a push notification for the task.
+   * @returns If the `task` variable is falsy (e.g. empty string, null, undefined), then `null` is
+   * being returned. Otherwise, nothing is being returned explicitly, but the function is adding a new
+   * task item to the `taskItems` state array and scheduling a push notification for the specified
+   * trigger time.
+   */
   const handleAddTask = async () => {
     Keyboard.dismiss();
     if (!task) return null;
@@ -101,6 +108,12 @@ export default function App() {
     await schedulePushNotification(newTaskItem.triggerTime, newTaskItem.task);
   };
 
+  /**
+   * The function removes a task item from an array of task items based on its ID.
+   * @param id - The `id` parameter is a unique identifier for a task item that needs to be completed.
+   * The `completeTask` function uses this `id` to filter out the task item from the `taskItems` array
+   * and update the state using the `setTaskItems` function.
+   */
   const completeTask = (id) => {
     const newTaskItem = taskItems.filter((tasks) => tasks.id !== id);
     setTaskItems(newTaskItem);
